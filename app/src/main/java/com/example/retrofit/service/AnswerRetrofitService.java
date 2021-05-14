@@ -9,13 +9,15 @@ import retrofit2.http.Body;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
+import java.util.List;
+
 public interface AnswerRetrofitService {
 
     @POST("api/answer/{questionNumber}")
     Call<RegistAnswerResponse> registAnswer(@Path("questionNumber") Long questionNumber,
                                             @Body RegistAnswerRequest request);
 
-    @POST("api/answer/{questionNumber}")
-    Call<AllAnswerResponse> allAnswer(@Path("questionNumber") Long questionNumber,
-                                         @Body AllAnswerRequest request);
+    @POST("api/allAnswer/{questionNumber}")
+    Call<List<AllAnswerResponse>> allAnswer(@Path("questionNumber") Long questionNumber,
+                                            @Body AllAnswerRequest request);
 }

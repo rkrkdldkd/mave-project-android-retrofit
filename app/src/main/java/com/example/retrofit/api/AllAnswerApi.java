@@ -13,6 +13,8 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import java.util.List;
+
 public class AllAnswerApi {
 
     static final String TAG = "Mave";
@@ -26,13 +28,13 @@ public class AllAnswerApi {
 
         AnswerRetrofitService answerRetrofitService = retrofit.create(AnswerRetrofitService.class);
         AllAnswerRequest request = new AllAnswerRequest(3l);
-        Call<AllAnswerResponse> call = answerRetrofitService.allAnswer(1l,request);
+        Call<List<AllAnswerResponse>> call = answerRetrofitService.allAnswer(1l,request);
 
-        call.enqueue(new Callback<AllAnswerResponse>() {
+        call.enqueue(new Callback<List<AllAnswerResponse>>() {
             @Override
-            public void onResponse(Call<AllAnswerResponse> call, Response<AllAnswerResponse> response) {
+            public void onResponse(Call<List<AllAnswerResponse>> call, Response<List<AllAnswerResponse>> response) {
                 if (response.isSuccessful()) {
-                    AllAnswerResponse body = response.body();
+                    List<AllAnswerResponse> body = response.body();
                     Log.d(TAG, "response 성공!!");
 //                            textTest.setText(body.getUserId().toString());
                 } else {
@@ -42,7 +44,7 @@ public class AllAnswerApi {
             }
 
             @Override
-            public void onFailure(Call<AllAnswerResponse> call, Throwable t) {
+            public void onFailure(Call<List<AllAnswerResponse>> call, Throwable t) {
                 Log.d(TAG, "onFailure => " + t.getMessage());
             }
         });
