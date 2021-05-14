@@ -7,7 +7,7 @@ public class RegistAnswerResponse {
     @SerializedName("answer")
     private String answer;
 
-    @SerializedName("idFinish")
+    @SerializedName("isFinish")
     private Boolean isFinish;
 
     public RegistAnswerResponse() {
