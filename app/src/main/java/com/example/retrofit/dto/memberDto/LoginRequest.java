@@ -3,24 +3,20 @@ package com.example.retrofit.dto.memberDto;
 import com.google.gson.annotations.SerializedName;
 
 
-public class JoinMemberRequest {
+public class LoginRequest {
 
     @SerializedName("userId")
     private String userId;
-
-    @SerializedName("userName")
-    private String userName;
 
     @SerializedName("password")
     private String password;
 
 
-    public JoinMemberRequest() {
+    public LoginRequest() {
     }
 
-    public JoinMemberRequest(String userId, String userName, String password) {
+    public LoginRequest(String userId, String password) {
         this.userId = userId;
-        this.userName = userName;
         this.password = password;
     }
 
@@ -32,13 +28,6 @@ public class JoinMemberRequest {
         this.userId = userId;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
 
     public String getPassword() {
         return password;

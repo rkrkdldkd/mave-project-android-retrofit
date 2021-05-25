@@ -5,28 +5,28 @@ import android.view.View;
 import com.example.retrofit.CreateRetrofit;
 import com.example.retrofit.dto.memberDto.JoinMemberRequest;
 import com.example.retrofit.dto.memberDto.JoinMemberResponse;
+import com.example.retrofit.dto.memberDto.LoginRequest;
+import com.example.retrofit.dto.memberDto.LoginResponse;
 import com.example.retrofit.service.MemberRetrofitService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
-public class JoinMemberApi {
+public class LoginApi {
     static final String TAG = "Mave";
 
 
     public void onClick(View v) {
 
         MemberRetrofitService memberRetrofitService = CreateRetrofit.createRetrofit().create(MemberRetrofitService.class);
-        JoinMemberRequest request = new JoinMemberRequest("userId","userName","password");
-        Call<JoinMemberResponse> call = memberRetrofitService.joinMember(request);
+        LoginRequest request = new LoginRequest("userId", "password");
+        Call<LoginResponse> call = memberRetrofitService.login(request);
 
-        call.enqueue(new Callback<JoinMemberResponse>() {
+        call.enqueue(new Callback<LoginResponse>() {
             @Override
-            public void onResponse(Call<JoinMemberResponse> call, Response<JoinMemberResponse> response) {
+            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 if (response.isSuccessful()) {
-                    JoinMemberResponse body = response.body();
+                    LoginResponse body = response.body();
                     Log.d(TAG, "response 성공!!");
 //                            textTest.setText(body.getUserId().toString());
                 } else {
@@ -36,7 +36,7 @@ public class JoinMemberApi {
             }
 
             @Override
-            public void onFailure(Call<JoinMemberResponse> call, Throwable t) {
+            public void onFailure(Call<LoginResponse> call, Throwable t) {
                 Log.d(TAG, "onFailure => " + t.getMessage());
             }
         });

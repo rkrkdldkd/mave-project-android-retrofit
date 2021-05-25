@@ -28,13 +28,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("http://192.168.37.101:8080/")
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build();
-
-                MemberRetrofitService memberJoinService = retrofit.create(MemberRetrofitService.class);
-                JoinMemberRequest member = new JoinMemberRequest("첫 번째 유저");
+                MemberRetrofitService memberJoinService = CreateRetrofit.createRetrofit().create(MemberRetrofitService.class);
+                JoinMemberRequest member = new JoinMemberRequest();
                 Call<JoinMemberResponse> call = memberJoinService.joinMember(member);
 
                 call.enqueue(new Callback<JoinMemberResponse>() {
